@@ -15,4 +15,14 @@ class Address extends Model
         'address',
         'building',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }

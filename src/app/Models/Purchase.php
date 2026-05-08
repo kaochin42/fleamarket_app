@@ -15,4 +15,19 @@ class Purchase extends Model
         'address_id',
         'payment',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
 }

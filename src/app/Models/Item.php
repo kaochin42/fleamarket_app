@@ -11,7 +11,6 @@ class Item extends Model
 
     protected $fillable = [
         'user_id',
-        'category_id',
         'condition_id',
         'name',
         'brand_name',
@@ -19,4 +18,34 @@ class Item extends Model
         'image_path',
         'price',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'item_category');
+    }
 }
