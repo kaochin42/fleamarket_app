@@ -13,6 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// --- 誰でも閲覧可能なルート（認証不要） ---
+Route::get('/', [ItemController::class, 'index'])->name('item.index');
+Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
+
+// --- ログインユーザーのみアクセス可能なルート（要認証） ---
+Route::middleware('auth')->group(function () {
+
+    // 商品出品関連 (ItemController)
+    Route::get('/sell', [ItemController::class, 'create'])->name('item.create');
+    Route::post('/sell', [ItemController::class, 'store'])->name('item.store');
+
+    // 商品購入関連 (PurchaseController)
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'index'])->name('purchase.index');
+    Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
+
+    // 配送先住所変更 (PurchaseController)
+    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'edit'])->name('address.edit');
+    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'update'])->name('address.update');
+
+    // プロフィール関連 (ProfileController)
+    Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage.show');
+    Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
