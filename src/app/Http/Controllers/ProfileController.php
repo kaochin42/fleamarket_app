@@ -6,5 +6,18 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    //
+    public function show()
+    {
+        return view('profiles.show');
+    }
+
+    public function edit()
+    {
+        return view('profiles.edit');
+    }
+
+    public function update(Request $request)
+    {
+        return redirect()->route('profile.show');
+    }
 }
