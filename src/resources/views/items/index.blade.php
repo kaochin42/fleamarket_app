@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<body>
-    <h1>商品一覧ページ (items.index)</h1>
-    <a href="{{ route('item.show', ['item_id' => 1]) }}">商品1の詳細を見る</a>
-
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit">ログアウト</button>
-    </form>
-</body>
-
-</html>
+@section('content')
+    @foreach($items as $item)
+    <a href="{{ route('item.show', ['item_id' => $item->id]) }}">
+        <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+        <p>{{ $item->name }}</p>
+    </a>
+    @endforeach
+@endsection
