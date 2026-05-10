@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LogoutResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -36,6 +37,14 @@ class FortifyServiceProvider extends ServiceProvider
         // ログイン画面
         Fortify::loginView(function () {
             return view('auth.login');
+        });
+
+        // ログアウト後の遷移
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
+            public function toResponse($request)
+            {
+                return redirect()->route('login');
+            }
         });
 
         Fortify::createUsersUsing(CreateNewUser::class);
