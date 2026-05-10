@@ -8,7 +8,7 @@
 
 <body>
     <header>
-        <a href="{{ route('item.index') }}">COACHTECH</a>
+        <h1><a href="{{ route('item.index') }}">COACHTECH</a></h1>
     </header>
 
     <main>

@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<body>
-    <h1>商品詳細ページ (items.show)</h1>
-    <p>商品ID: 1</p>
-    <a href="{{ route('item.index') }}">一覧に戻る</a>
-</body>
+@section('content')
+<div>
+    {{-- 商品画像 --}}
+    <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+</div>
 
-</html>
+<div>
+    {{-- 商品名 --}}
+    <h2>●●●</h2>
+
+    {{-- ブランド名 --}}
+    <p>●●●</p>
+
+    {{-- 価格 --}}
+    <p>¥{{ ●●● }}</p>
+
+    {{-- 購入ボタン --}}
+    <a href="●●●">購入手続きへ</a>
+</div>
+@endsection

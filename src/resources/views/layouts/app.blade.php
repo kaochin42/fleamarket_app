@@ -8,7 +8,7 @@
 
 <body>
     <header>
-        <a href="{{ route('item.index') }}">COACHTECH</a>
+        <h1><a href="{{ route('item.index') }}">COACHTECH</a></h1>
         <input type="text" placeholder="なにをお探しですか？">
         @auth
         <form method="POST" action="{{ route('logout') }}">

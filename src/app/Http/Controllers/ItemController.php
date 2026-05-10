@@ -15,7 +15,8 @@ class ItemController extends Controller
 
     public function show($item_id)
     {
-        return view('items.show');
+        $item = Item::with(['categories', 'comments.user', 'condition', 'likes'])->findOrFail($item_id);
+        return view('items.show', compact('item'));
     }
 
     public function create()
