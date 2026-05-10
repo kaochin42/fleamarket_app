@@ -21,7 +21,13 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // ログアウト後の遷移
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
+            public function toResponse($request)
+            {
+                return redirect()->route('login');
+            }
+        });
     }
 
     /**
@@ -37,14 +43,6 @@ class FortifyServiceProvider extends ServiceProvider
         // ログイン画面
         Fortify::loginView(function () {
             return view('auth.login');
-        });
-
-        // ログアウト後の遷移
-        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
-            public function toResponse($request)
-            {
-                return redirect()->route('login');
-            }
         });
 
         Fortify::createUsersUsing(CreateNewUser::class);
