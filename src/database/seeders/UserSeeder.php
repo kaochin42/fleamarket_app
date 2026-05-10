@@ -19,7 +19,12 @@ class UserSeeder extends Seeder
                 'name' => '山田太郎',
                 'email' => 'test@test.com',
                 'password' => bcrypt('password'),
-            ]
+            ],
+            [
+                'name' => 'さとう',
+                'email' => 'user@test.com',
+                'password' => bcrypt('password'),
+            ],
         ];
 
         foreach ($users as $user) {
