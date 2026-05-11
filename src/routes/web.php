@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'index'])->name('purchase.index');
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
 
+    // コメント関連（CommentController）
+    Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->name('comment.store');
 
     // プロフィール関連 (ProfileController)
     Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage.show');

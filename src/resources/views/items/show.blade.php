@@ -45,6 +45,11 @@
     </div>
     @endforeach
 
-    {{-- コメントフォーム（後で実装） --}}
+    {{-- コメントフォーム --}}
+    <form method="POST" action="{{ route('comment.store', ['item_id' => $item->id]) }}">
+        @csrf
+        <textarea name="comment"></textarea>
+        <button type="submit">コメントを送信する</button>
+    </form>
 </div>
 @endsection
