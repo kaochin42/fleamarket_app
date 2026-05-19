@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class PurchaseController extends Controller
 {
     public function index($item_id)
     {
-        return view('purchases.index');
+        $item = Item::findOrFail($item_id);
+        return view('purchases.index', compact('item'));
     }
 
     public function store(Request $request)
