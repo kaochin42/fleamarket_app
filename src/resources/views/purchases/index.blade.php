@@ -23,8 +23,12 @@
 
     {{-- 配送先 --}}
     <div>
-        <p>{{ auth()->user()->postcode }}</p>
-        <p>{{ auth()->user()->address }}</p>
+        <p>{{ session('postcode', $user->postcode) }}</p>
+        <p>{{ session('address', $user->address) }}</p>
+        @if(!empty(session('building', $user->building)))
+        <p>{{ session('building', $user->building) }}</p>
+        @endif
+
         <a href="{{ route('address.edit', ['item_id' => $item->id]) }}">変更する</a>
     </div>
 

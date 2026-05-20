@@ -24,6 +24,7 @@ class User extends Authenticatable
         'profile_img',
         'postcode',
         'address',
+        'building',
     ];
 
     /**
