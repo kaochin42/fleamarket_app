@@ -1,9 +1,34 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
+@section('content')
 
-<body>
-    <h1>マイページ (profiles.show)</h1>
-    <a href="{{ route('profile.edit') }}">プロフィールを編集する</a>
-</body>
+{{-- プロフィール情報 --}}
+<div>
+    <img src="{{ asset('storage/' . $user->profile_img) }}" alt="プロフィール画像">
+    <p>{{ $user->name }}</p>
+    <a href="{{ route('profile.edit') }}">プロフィールを編集</a>
+</div>
 
-</html>
+{{-- タブ --}}
+<div>
+    <a href="{{ route('mypage.show') }}?page=sell">出品した商品</a>
+    <a href="{{ route('mypage.show') }}?page=buy">購入した商品</a>
+</div>
+
+{{-- 商品一覧 --}}
+@if(request('page') == 'buy')
+@foreach($buyItems as $item)
+<div>
+    <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+    <p>{{ $item->name }}</p>
+</div>
+@endforeach
+@else
+@foreach($sellItems as $item)
+<div>
+    <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+    <p>{{ $item->name }}</p>
+</div>
+@endforeach
+@endif
+
+@endsection
