@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage.show');
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    // いいね関連（LikeController）
+    Route::post('/item/{item_id}/like', [LikeController::class, 'toggle'])->name('like.toggle')->middleware('auth');
 });

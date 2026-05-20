@@ -16,6 +16,25 @@
     {{-- 価格 --}}
     <p>¥{{ $item->price }}(税込)</p>
 
+    {{-- いいね・コメント --}}
+    <div>
+        <form method="POST" action="{{ route('like.toggle', ['item_id' => $item->id]) }}">
+            @csrf
+            <button type="submit" style="border:none; background:none; cursor:pointer;">
+                @if($item->likes->contains('user_id', auth()->id()))
+                <img src="{{ asset('images/ハートロゴ_ピンク.png') }}" alt="いいね済み">
+                @else
+                <img src="{{ asset('images/ハートロゴ_デフォルト.png') }}" alt="いいね">
+                @endif
+            </button>
+            <span>{{ $item->likes->count() }}</span>
+        </form>
+
+        {{-- コメント数 --}}
+        <img src="{{ asset('images/ふきだしロゴ.png') }}" alt="コメント">
+        <span>{{ $item->comments->count() }}</span>
+    </div>
+
     {{-- 購入ボタン --}}
     <a href="{{ route('purchase.index', ['item_id' => $item->id]) }}">購入手続きへ</a>
 
