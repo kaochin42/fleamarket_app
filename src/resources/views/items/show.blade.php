@@ -3,7 +3,7 @@
 @section('content')
 <div>
     {{-- 商品画像 --}}
-    <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+    <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}">
 </div>
 
 <div>
