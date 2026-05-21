@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+@if($errors->any())
+<ul>
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
 <div>
     {{-- 商品画像 --}}
     <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}">
