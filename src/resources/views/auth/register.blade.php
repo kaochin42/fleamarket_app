@@ -2,7 +2,16 @@
 
 @section('content')
 <h2>会員登録</h2>
-<form method="post" action="{{ route('register') }}">
+
+@if($errors->any())
+<ul>
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
+
+<form method="post" action="{{ route('register') }}" novalidate>
     @csrf
 
     <div>
