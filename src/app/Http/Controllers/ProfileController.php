@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Purchase;
+use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -22,7 +22,7 @@ class ProfileController extends Controller
         return view('profiles.edit', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(ProfileRequest $request)
     {
         $user = auth()->user();
         $user->name = $request->name;
