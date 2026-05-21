@@ -3,6 +3,14 @@
 @section('content')
 <h2>住所の変更</h2>
 
+@if($errors->any())
+<ul>
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
+
 <form method="POST" action="{{ route('address.update', ['item_id' => $item->id]) }}">
     @csrf
 

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PurchaseRequest;
 use App\Models\Item;
 use App\Models\Address;
 use App\Models\Purchase;
@@ -18,7 +19,7 @@ class PurchaseController extends Controller
         return view('purchases.index', compact('item', 'user'));
     }
 
-    public function store(Request $request, $item_id)
+    public function store(PurchaseRequest $request, $item_id)
     {
         $address = Address::create([
             'user_id'  => auth()->id(),
@@ -47,7 +48,7 @@ class PurchaseController extends Controller
         return view('purchases.address', compact('item', 'user'));
     }
 
-    public function update(Request $request, $item_id)
+    public function update(AddressRequest $request, $item_id)
     {
         session([
             'postcode' => $request->postcode,

@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if($errors->any())
+<ul>
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
+
 <div>
     {{-- 商品情報 --}}
     <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
@@ -28,6 +37,8 @@
         @if(!empty(session('building', $user->building)))
         <p>{{ session('building', $user->building) }}</p>
         @endif
+
+        <input type="hidden" name="address" value="{{ session('address', $user->address) }}">
 
         <a href="{{ route('address.edit', ['item_id' => $item->id]) }}">変更する</a>
     </div>
