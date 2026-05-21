@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExhibitionRequest;
 use App\Models\Category;
 use App\Models\Condition;
-use Illuminate\Http\Request;
 use App\Models\Item;
 
 class ItemController extends Controller
@@ -28,7 +28,7 @@ class ItemController extends Controller
         return view('items.create', compact('categories', 'conditions'));
     }
 
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
         $image_path = null;
         if ($request->hasFile('image')) {
