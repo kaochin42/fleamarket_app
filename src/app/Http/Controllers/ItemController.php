@@ -6,13 +6,15 @@ use App\Http\Requests\ExhibitionRequest;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
+use App\Models\Purchase;
 
 class ItemController extends Controller
 {
     public function index()
     {
         $items = Item::where('user_id', '!=', auth()->id())->get();
-        return view('items.index', compact('items'));
+        $purchasedItemIds = Purchase::pluck('item_id');
+        return view('items.index', compact('items', 'purchasedItemIds'));
     }
 
     public function show($item_id)
