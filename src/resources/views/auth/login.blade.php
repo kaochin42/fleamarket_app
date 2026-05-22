@@ -2,7 +2,16 @@
 
 @section('content')
 <h2>ログイン</h2>
-<form method="post" action="{{ route('login') }}">
+
+@if($errors->any())
+<ul>
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
+
+<form method="post" action="{{ route('login') }}" novalidate>
     @csrf
 
     <div>
@@ -16,7 +25,7 @@
     </div>
 
     <button type="submit">ログインする</button>
-    
+
     <a href="{{ route('register') }}">会員登録はこちら</a>
 </form>
 @endsection
