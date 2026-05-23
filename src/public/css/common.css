@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 1540px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ヘッダー */
+.header {
+    background-color: #000000;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.header-logo-img {
+    width: 370px;
+}
+
+.header-search {
+    width: 500px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    padding: 0 16px;
+    font-size: 24px;
+}
+
+.header-search::placeholder {
+    color: #000000;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-link,
+.nav-button {
+    color: #ffffff;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.nav-sell {
+    color: #000000;
+    background-color: #ffffff;
+    text-decoration: none;
+    width: 100px;
+    height: 50px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+/* 共通部分 */
+
+/* ページタイトル */
+.title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 16px;
+}
+
+/* ラベル */
+.label {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+}
+
+/* 入力フォーム */
+.input {
+    width: 664px;
+    height: 53px;
+    border-radius: 4px;
+    border: 1px solid #5F5F5F;
+    font-size: 24px;
+    font-weight: 700;
+    color: #5F5F5F;
+    padding: 0 16px;
+}
+
+/* ボタン */
+/* 赤 */
+.action-bar {
+    border-radius: 5px;
+    border: none;
+    background-color: #FF5555;
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+    cursor: pointer;
+    display: block;
+}
+
+/* 白 */
+.action-bar-outline {
+    border-radius: 10px;
+    border: 2px solid #FF5555;
+    background-color: #ffffff;
+    color: #FF5555;
+    font-weight: 700;
+    cursor: pointer;
+    display: block;
+}
+
+/* コンテナ */
+.container {
+    width: 1380px;
+    margin: 0 auto;
+}
+
+/* エラーメッセージ */
+.error {
+    font-size: 14px;
+    color: #FF5555;
+}
+
+/* プロフィール画像 */
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    object-fit: cover;
+}
