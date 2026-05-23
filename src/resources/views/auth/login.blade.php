@@ -1,31 +1,33 @@
 @extends('layouts.auth')
-
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+@endpush
 @section('content')
-<h2>ログイン</h2>
+<div class="login-inner">
+    <h2 class="title">ログイン</h2>
 
-@if($errors->any())
-<ul>
-    @foreach($errors->all() as $error)
-    <li>{{ $error }}</li>
-    @endforeach
-</ul>
-@endif
+    <form method="post" action="{{ route('login') }}" novalidate>
+        @csrf
 
-<form method="post" action="{{ route('login') }}" novalidate>
-    @csrf
+        <div class="form-group">
+            <label class="label">メールアドレス</label>
+            <input class="input" type="email" name="email">
+            @if($errors->has('email'))
+            <p class="error">{{ $errors->first('email') }}</p>
+            @endif
+        </div>
 
-    <div>
-        <label>メールアドレス</label>
-        <input type="email" name="email">
-    </div>
+        <div class="form-group">
+            <label class="label">パスワード</label>
+            <input class="input" type="password" name="password">
+            @if($errors->has('password'))
+            <p class="error">{{ $errors->first('password') }}</p>
+            @endif
+        </div>
 
-    <div>
-        <label>パスワード</label>
-        <input type="password" name="password">
-    </div>
+        <button class="action-bar" type="submit">ログインする</button>
 
-    <button type="submit">ログインする</button>
-
-    <a href="{{ route('register') }}">会員登録はこちら</a>
-</form>
+        <a class="auth-link" href="{{ route('register') }}">会員登録はこちら</a>
+    </form>
+</div>
 @endsection

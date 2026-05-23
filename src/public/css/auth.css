@@ -1,0 +1,48 @@
+.login-inner,
+.register-inner {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.login-inner {
+    padding-top: 118px;
+}
+
+.register-inner {
+    padding-top: 96px;
+}
+
+/* フォーム */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group .label,
+.form-group .input {
+    display: block;
+}
+
+/* ボタン */
+.action-bar {
+    width: 100%;
+}
+
+/* ログイン用 */
+.login-inner .action-bar {
+    margin-top: 80px;
+}
+
+/* 会員登録用 */
+.register-inner .action-bar {
+    margin-top: 116px;
+}
+
+.auth-link {
+    display: block;
+    text-align: center;
+    color: #0073CC;
+    font-size: 20px;
+    text-decoration: none;
+    margin-top: 18px;
+    margin-bottom: 43px;
+}
