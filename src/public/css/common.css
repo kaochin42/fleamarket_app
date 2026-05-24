@@ -149,3 +149,70 @@ body {
     background-color: #D9D9D9;
     object-fit: cover;
 }
+
+/* 商品一覧 */
+/* タブエリア */
+.tab-outer {
+    border-bottom: 2px solid #5F5F5F;
+}
+
+.tab-area {
+    display: flex;
+    gap: 0;
+    margin-top: 47px;
+    padding-left: 40px;
+}
+
+.tab-link {
+    width: 155px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    color: #5F5F5F;
+}
+
+.tab-active {
+    color: #FF5555;
+}
+
+/* 商品一覧 */
+.products-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 71.51px;
+    margin-top: 76px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    max-width: 1400px;
+    margin-bottom: 80px;
+}
+
+/* 商品カード */
+.product-card {
+    text-decoration: none;
+    color: #000000;
+    width: 290px;
+}
+
+.product-img-wrap {
+    position: relative;
+    width: 290px;
+    height: 281px;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* 商品名 */
+.product-name {
+    font-size: 25px;
+    margin-top: 8px;
+}

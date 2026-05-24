@@ -4,9 +4,11 @@
 @endpush
 
 @section('content')
-<div class="tab-area">
-    <a class="tab-link" href="/">おすすめ</a>
-    <a class="tab-link" href="/?tab=mylist">マイリスト</a>
+<div class="tab-outer">
+    <div class="tab-area">
+        <a class="tab-link {{ request('tab') !== 'mylist' ? 'tab-active' : '' }}" href="/">おすすめ</a>
+        <a class="tab-link {{ request('tab') === 'mylist' ? 'tab-active' : '' }}" href="/?tab=mylist">マイリスト</a>
+    </div>
 </div>
 
 <div class="products-row">
