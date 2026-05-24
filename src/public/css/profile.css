@@ -48,3 +48,31 @@
     margin-top: 67px;
     margin-bottom: 127px;
 }
+
+/* プロフィール情報エリア */
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-top: 78px;
+    margin-bottom: 77px;
+    margin-left: 299px;
+    gap: 0;
+}
+
+.user-info .profile-img {
+    margin-right: 80px;
+}
+
+.profile-name {
+    font-size: 36px;
+    font-weight: 700;
+    margin-right: 250px;
+}
+
+.user-info .action-bar-outline {
+    width: 310px;
+    height: 59px;
+    font-size: 26px;
+    text-align: center;
+    line-height: 59px;
+}
