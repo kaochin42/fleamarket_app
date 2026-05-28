@@ -25,7 +25,7 @@
                 <form method="POST" action="{{ route('like.toggle', ['item_id' => $item->id]) }}">
                     @csrf
                     <button class="action-icon-btn" type="submit">
-                        @if($item->likes->contains('user_id', auth()->id()))
+                        @if(auth()->check() && $item->likes->contains('user_id', auth()->id()))
                         <img class="action-icon" src="{{ asset('images/ハートロゴ_ピンク.png') }}" alt="いいね済み">
                         @else
                         <img class="action-icon" src="{{ asset('images/ハートロゴ_デフォルト.png') }}" alt="いいね">

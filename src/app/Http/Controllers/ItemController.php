@@ -7,12 +7,20 @@ use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
 use App\Models\Purchase;
+use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $items = Item::where('user_id', '!=', auth()->id())->get();
+        if ($request->tab === 'mylist') {
+            $items = Item::whereHas('likes', function ($query) {
+                $query->where('user_id', auth()->id());
+            })->get();
+        } else {
+            $items = Item::where('user_id', '!=', auth()->id())->get();
+        }
+
         $purchasedItemIds = Purchase::pluck('item_id');
         return view('items.index', compact('items', 'purchasedItemIds'));
     }
