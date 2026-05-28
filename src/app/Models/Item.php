@@ -48,4 +48,11 @@ class Item extends Model
     {
         return $this->belongsToMany(Category::class, 'item_category');
     }
+
+    public function scopeSearchName($query, $keyword)
+    {
+        if ($keyword) {
+            $query->where('name', 'like', '%' . $keyword . '%');
+        }
+    }
 }

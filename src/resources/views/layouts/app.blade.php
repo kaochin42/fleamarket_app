@@ -15,7 +15,9 @@
         <h1 class="header-logo">
             <a href="{{ route('item.index') }}"><img class="header-logo-img" src="{{ asset('images/COACHTECHヘッダーロゴ.png') }}" alt="COACHTECH"></a>
         </h1>
-        <input class="header-search" type="text" placeholder="なにをお探しですか？">
+        <form method="GET" action="{{ route('item.index') }}">
+            <input class="header-search" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ $keyword ?? '' }}">
+        </form>
         <nav class="header-nav">
             @auth
             <form method="POST" action="{{ route('logout') }}">

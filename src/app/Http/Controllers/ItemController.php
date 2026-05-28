@@ -13,16 +13,18 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
+        $keyword = $request->keyword;
+
         if ($request->tab === 'mylist') {
             $items = Item::whereHas('likes', function ($query) {
                 $query->where('user_id', auth()->id());
-            })->get();
+            })->searchName($keyword)->get();
         } else {
-            $items = Item::where('user_id', '!=', auth()->id())->get();
+            $items = Item::where('user_id', '!=', auth()->id())->searchName($keyword)->get();
         }
 
         $purchasedItemIds = Purchase::pluck('item_id');
-        return view('items.index', compact('items', 'purchasedItemIds'));
+        return view('items.index', compact('items', 'purchasedItemIds', 'keyword'));
     }
 
     public function show($item_id)
