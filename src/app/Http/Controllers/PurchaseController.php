@@ -7,14 +7,19 @@ use App\Http\Requests\PurchaseRequest;
 use App\Models\Item;
 use App\Models\Address;
 use App\Models\Purchase;
+use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
-    public function index($item_id)
+    public function index(Request $request, $item_id)
     {
         $item = Item::findOrFail($item_id);
 
         $user = auth()->user();
+
+        if ($request->has('payment')) {
+            session(['payment' => $request->payment]);
+        }
 
         return view('purchases.index', compact('item', 'user'));
     }

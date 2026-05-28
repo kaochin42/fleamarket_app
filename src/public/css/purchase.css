@@ -1,0 +1,151 @@
+.purchase-outer {
+    display: flex;
+    gap: 0;
+    padding: 93px 85px 0 80px;
+    margin-bottom: 170px;
+}
+
+/* 左カラム */
+.purchase-left {
+    flex: 1;
+    padding-right: 80px;
+}
+
+/* 商品情報 */
+.purchase-item {
+    display: flex;
+    gap: 55px;
+    padding-bottom: 52px;
+    border-bottom: 1px solid #000000;
+    align-items: flex-start;
+}
+
+.purchase-item-img {
+    width: 178px;
+    height: 178px;
+    object-fit: cover;
+    background-color: #D9D9D9;
+}
+
+.purchase-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.purchase-item-name {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* セクション */
+.purchase-section {
+    padding: 36px 0 0 35px;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 63px;
+}
+
+.purchase-section:last-child {
+    padding-bottom: 59px;
+}
+
+.purchase-section .input {
+    width: 265px;
+    height: 31px;
+    margin-top: 35px;
+    font-size: 16px;
+    margin-left: 35px;
+}
+
+.purchase-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.purchase-address {
+    margin-top: 35px;
+    margin-left: 35px;
+    font-weight: 600;
+}
+
+.purchase-change-link {
+    color: #5F84FF;
+    text-decoration: none;
+    font-size: 20px;
+    margin-right: 35px;
+}
+
+.purchase-select {
+    width: 265px;
+    height: 31px;
+    margin-top: 16px;
+    font-size: 16px;
+}
+
+/* 右カラム */
+.purchase-right {
+    width: 440px;
+    flex-shrink: 0;
+}
+
+/* 確認エリア */
+.purchase-confirm {
+    border: 1px solid #000000;
+    margin-bottom: 66px;
+}
+
+.purchase-confirm-row {
+    display: flex;
+    align-items: center;
+    height: 115px;
+    border-bottom: 1px solid #000000;
+}
+
+.purchase-confirm-row:last-child {
+    border-bottom: none;
+}
+
+.purchase-confirm-label {
+    width: 220px;
+    text-align: center;
+    font-size: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.purchase-confirm-value {
+    width: 220px;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 購入ボタン */
+.purchase-btn {
+    width: 440px;
+    height: 60px;
+    text-align: center;
+    padding: 0;
+}
+
+.sell-select {
+    background-size: 13px;
+    width: 265px;
+}
+
+.purchase-price-yen {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.purchase-price-num {
+    font-size: 32px;
+    font-weight: 400;
+}
