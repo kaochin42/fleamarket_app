@@ -21,10 +21,14 @@ class CreateNewUser implements CreatesNewUsers
         $request = app(RegisterRequest::class);
         $request->validateResolved();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $user->sendEmailVerificationNotification();
+
+        return $user;
     }
 }

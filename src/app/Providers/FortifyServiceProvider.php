@@ -13,6 +13,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,14 @@ class FortifyServiceProvider extends ServiceProvider
                 return redirect()->route('login');
             }
         });
+
+        // 会員登録後の遷移
+        $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
+            public function toResponse($request)
+            {
+                return redirect('/email/verify');
+            }
+        });
     }
 
     /**
@@ -40,12 +49,18 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.register');
         });
 
+        // メール認証画面
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
+
         // ログイン画面
         Fortify::loginView(function () {
             return view('auth.login');
         });
 
         Fortify::createUsersUsing(CreateNewUser::class);
+
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);

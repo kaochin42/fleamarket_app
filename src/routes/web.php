@@ -25,7 +25,7 @@ Route::get('/', [ItemController::class, 'index'])->name('item.index');
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
 
 // --- ログインユーザーのみアクセス可能なルート（要認証） ---
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
     // 商品出品関連 (ItemController)
     Route::get('/sell', [ItemController::class, 'create'])->name('item.create');
