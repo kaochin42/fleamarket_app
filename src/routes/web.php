@@ -38,6 +38,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // 商品購入関連 (PurchaseController)
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'index'])->name('purchase.index');
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
+    // stripe
+    Route::get('/purchase/{item_id}/success', [PurchaseController::class, 'success'])->name('purchase.success');
 
     // コメント関連（CommentController）
     Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->name('comment.store');

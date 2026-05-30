@@ -35,40 +35,40 @@
             </div>
         </form>
 
-        <form id="purchase-form" method="POST" action="{{ route('purchase.store', ['item_id' => $item->id]) }}">
-            @csrf
-            {{-- 配送先 --}}
-            <div class="purchase-section">
-                <div class="purchase-section-header">
-                    <p class="label">配送先</p>
-                    <a href="{{ route('address.edit', ['item_id' => $item->id]) }}" class="purchase-change-link">変更する</a>
-                </div>
-                <div class="purchase-address">
-                    <p>〒{{ session('postcode', $user->postcode) }}</p>
-                    <p>{{ session('address', $user->address) }}</p>
-                    @if(!empty(session('building', $user->building)))
-                    <p>{{ session('building', $user->building) }}</p>
-                    @endif
-                </div>
+        {{-- 配送先 --}}
+        <div class="purchase-section">
+            <div class="purchase-section-header">
+                <p class="label">配送先</p>
+                <a href="{{ route('address.edit', ['item_id' => $item->id]) }}" class="purchase-change-link">変更する</a>
             </div>
-
-        </form>
+            <div class="purchase-address">
+                <p>〒{{ session('postcode', $user->postcode) }}</p>
+                <p>{{ session('address', $user->address) }}</p>
+                @if(!empty(session('building', $user->building)))
+                <p>{{ session('building', $user->building) }}</p>
+                @endif
+            </div>
+        </div>
     </div>
 
     {{-- 右カラム --}}
-    <div class="purchase-right">
-        <dl class="purchase-confirm">
-            <div class="purchase-confirm-row">
-                <dt class="purchase-confirm-label">商品代金</dt>
-                <dd class="purchase-confirm-value">¥{{ number_format($item->price) }}</dd>
-            </div>
-            <div class="purchase-confirm-row">
-                <dt class="purchase-confirm-label">支払い方法</dt>
-                <dd class="purchase-confirm-value">{{ session('payment', '-') }}</dd>
-            </div>
-        </dl>
-        <button type="submit" form="purchase-form" class="action-bar purchase-btn">購入する</button>
-    </div>
-
+    <form id="purchase-form" method="POST" action="{{ route('purchase.store', ['item_id' => $item->id]) }}">
+        @csrf
+        <input type="hidden" name="payment" value="{{ session('payment') }}">
+        <input type="hidden" name="address" value="{{ session('address', $user->address) }}">
+        <div class="purchase-right">
+            <dl class="purchase-confirm">
+                <div class="purchase-confirm-row">
+                    <dt class="purchase-confirm-label">商品代金</dt>
+                    <dd class="purchase-confirm-value">¥{{ number_format($item->price) }}</dd>
+                </div>
+                <div class="purchase-confirm-row">
+                    <dt class="purchase-confirm-label">支払い方法</dt>
+                    <dd class="purchase-confirm-value">{{ session('payment', '-') }}</dd>
+                </div>
+            </dl>
+            <button type="submit" class="action-bar purchase-btn">購入する</button>
+        </div>
+    </form>
 </div>
 @endsection

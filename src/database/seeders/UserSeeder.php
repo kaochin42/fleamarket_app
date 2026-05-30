@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'postcode' => '1234567',
                 'address' => '大坂府大坂市なにわ区',
+                'email_verified_at' => now(),
             ],
             [
                 'name' => 'さとう',
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'postcode' => '8901234',
                 'address' => '東京都天王寺市あびこ3丁目',
+                'email_verified_at' => now(),
             ],
         ];
 
