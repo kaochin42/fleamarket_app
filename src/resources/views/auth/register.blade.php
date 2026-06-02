@@ -28,17 +28,21 @@
         <div class="form-group">
             <label class="label">パスワード</label>
             <input class="input" type="password" name="password">
-            @if($errors->has('password'))
-            <p class="error">{{ $errors->first('password') }}</p>
+            @error('password')
+            @if($message !== 'パスワードと一致しません')
+            <p class="error">{{ $message }}</p>
             @endif
+            @enderror
         </div>
 
         <div class="form-group">
             <label class="label">確認用パスワード</label>
             <input class="input" type="password" name="password_confirmation">
-            @if($errors->has('password_confirmation'))
-            <p class="error">{{ $errors->first('password_confirmation') }}</p>
+            @error('password')
+            @if($message === 'パスワードと一致しません')
+            <p class="error">{{ $message }}</p>
             @endif
+            @enderror
         </div>
 
         <button class="action-bar" type="submit">登録</button>

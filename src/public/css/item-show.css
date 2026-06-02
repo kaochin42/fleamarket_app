@@ -113,6 +113,13 @@
     margin-top: 0;
 }
 
+.item-sold-btn {
+    background-color: #D9D9D9;
+    color: #000000;
+    cursor: default;
+    pointer-events: none;
+}
+
 /* セクション共通 */
 .item-section {
     padding: 22px 0;

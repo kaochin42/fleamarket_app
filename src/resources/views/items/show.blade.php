@@ -41,7 +41,11 @@
         </div>
 
         {{-- 購入ボタン --}}
+        @if($item->purchases->count() > 0)
+        <span class="action-bar item-purchase-btn item-sold-btn">売り切れました</span>
+        @else
         <a class="action-bar item-purchase-btn" href="{{ route('purchase.index', ['item_id' => $item->id]) }}">購入手続きへ</a>
+        @endif
 
         {{-- 商品説明 --}}
         <div class="item-section">

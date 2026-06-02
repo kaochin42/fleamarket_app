@@ -12,9 +12,10 @@
 
         {{-- プロフィール画像 --}}
         <div class="profile-img-wrap">
-            <img class="profile-img" src="{{ asset('storage/' . $user->profile_img) }}" alt="プロフィール画像">
+            <img class="profile-img" id="profile-img-preview" src="{{ $user->profile_img ? asset('storage/' . $user->profile_img) : '' }}">
             <label class="action-bar-outline" for="profile_img">画像を選択する</label>
-            <input type="file" name="profile_img" id="profile_img" style="display: none;">
+            <input type="file" name="profile_img" id="profile_img" style="display: none;"
+                onchange="document.getElementById('profile-img-preview').src = window.URL.createObjectURL(this.files[0])">
             @if($errors->has('profile_img'))
             <p class="error">{{ $errors->first('profile_img') }}</p>
             @endif
@@ -32,7 +33,7 @@
         {{-- 郵便番号 --}}
         <div class="form-group">
             <label class="label">郵便番号</label>
-            <input class="input" type="text" name="postcode" value="{{ $user->postcode }}">
+            <input class="input" type="text" name="postcode" value="{{ old('postcode', $user->postcode) }}">
             @if($errors->has('postcode'))
             <p class="error">{{ $errors->first('postcode') }}</p>
             @endif
@@ -41,7 +42,7 @@
         {{-- 住所 --}}
         <div class="form-group">
             <label class="label">住所</label>
-            <input class="input" type="text" name="address" value="{{ $user->address }}">
+            <input class="input" type="text" name="address" value="{{ old('address', $user->address) }}">
             @if($errors->has('address'))
             <p class="error">{{ $errors->first('address') }}</p>
             @endif
@@ -50,7 +51,7 @@
         {{-- 建物名 --}}
         <div class="form-group">
             <label class="label">建物名</label>
-            <input class="input" type="text" name="building" value="{{ $user->building }}">
+            <input class="input" type="text" name="building" value="{{ old('building', $user->building) }}">
         </div>
 
         <button class="action-bar" type="submit">更新する</button>
