@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
                 'postcode' => '1234567',
                 'address' => '大坂府大坂市なにわ区',
                 'email_verified_at' => now(),
+                'profile_img' => 'profiles/くま.png',
             ],
             [
                 'name' => 'さとう',
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
                 'postcode' => '8901234',
                 'address' => '東京都天王寺市あびこ3丁目',
                 'email_verified_at' => now(),
+                'profile_img' => 'profiles/うさぎ.png',
             ],
         ];
 
