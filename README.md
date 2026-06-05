@@ -17,6 +17,9 @@
 ## テスト実行
 - php artisan test
 
+※ テスト実行後はDBがリセットされるため、以下のコマンドでダミーデータを再作成してください
+- php artisan migrate:fresh --seed
+
 ## 開発環境
 - 商品一覧:http://localhost/
 - ユーザー登録:http://localhost/register

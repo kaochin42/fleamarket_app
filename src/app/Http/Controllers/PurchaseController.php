@@ -17,6 +17,12 @@ class PurchaseController extends Controller
 
         $user = auth()->user();
 
+        // セッションのitem_idと違う商品なら支払い方法をリセット
+        if (session('current_item_id') !== $item_id) {
+            session()->forget('payment');
+            session(['current_item_id' => $item_id]);
+        }
+
         if ($request->has('payment')) {
             session(['payment' => $request->payment]);
         }
