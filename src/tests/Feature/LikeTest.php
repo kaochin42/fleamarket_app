@@ -25,12 +25,15 @@ class LikeTest extends TestCase
         $user = User::factory()->create();
         $item = Item::factory()->create();
 
-        $response = $this->actingAs($user)->post('/item/' . $item->id . '/like');
+        $this->actingAs($user)->post('/item/' . $item->id . '/like');
+
+        $response = $this->actingAs($user)->get('/item/' . $item->id);
 
         $this->assertDatabaseHas('likes', [
             'user_id' => $user->id,
             'item_id' => $item->id,
         ]);
+        $response->assertSee('1'); // いいね数が1になってるか確認
     }
 
     // 2. いいね済みのアイコンは色が変化する
@@ -60,11 +63,14 @@ class LikeTest extends TestCase
             'item_id' => $item->id,
         ]);
 
-        $response = $this->actingAs($user)->post('/item/' . $item->id . '/like');
+        $this->actingAs($user)->post('/item/' . $item->id . '/like');
 
         $this->assertDatabaseMissing('likes', [
             'user_id' => $user->id,
             'item_id' => $item->id,
         ]);
+
+        $response = $this->actingAs($user)->get('/item/' . $item->id);
+        $response->assertSee('0'); // いいね数が0になってるか確認
     }
 }

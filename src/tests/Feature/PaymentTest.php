@@ -24,7 +24,11 @@ class PaymentTest extends TestCase
         $user = User::factory()->create();
         $item = Item::factory()->create();
 
-        $response = $this->actingAs($user)->get('/purchase/' . $item->id . '?payment=コンビニ払い');
+        // セッションに支払い方法を保存
+        $this->actingAs($user)->get('/purchase/' . $item->id . '?payment=コンビニ払い');
+
+        // 購入画面で支払い方法が反映されてるか確認
+        $response = $this->actingAs($user)->get('/purchase/' . $item->id);
 
         $response->assertSee('コンビニ払い');
     }

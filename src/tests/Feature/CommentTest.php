@@ -33,6 +33,9 @@ class CommentTest extends TestCase
             'item_id' => $item->id,
             'comment' => 'テストコメント',
         ]);
+
+        $response = $this->actingAs($user)->get('/item/' . $item->id);
+        $response->assertSee('1');
     }
 
     // 2. ログイン前のユーザーはコメントを送信できない

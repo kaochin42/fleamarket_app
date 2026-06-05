@@ -20,6 +20,7 @@ class PurchaseTest extends TestCase
     }
 
     // 1. 「購入する」ボタンを押下すると購入が完了する
+    // ※Stripe決済をスキップしてsuccessエンドポイントを直接テスト
     public function test_purchase_is_completed()
     {
         $user = User::factory()->create();

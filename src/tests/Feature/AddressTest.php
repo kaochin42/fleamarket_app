@@ -37,6 +37,7 @@ class AddressTest extends TestCase
     }
 
     // 2. 購入した商品に送付先住所が紐づいて登録される
+    // ※Stripe決済をスキップしてsuccessエンドポイントを直接テスト
     public function test_address_is_linked_to_purchase()
     {
         $user = User::factory()->create();
