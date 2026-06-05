@@ -23,6 +23,7 @@ class PurchaseController extends Controller
             session(['current_item_id' => $item_id]);
         }
 
+        // 支払い方法が選択されたらセッションに保存（画面リロード時に保持するため）
         if ($request->has('payment')) {
             session(['payment' => $request->payment]);
         }
@@ -30,12 +31,15 @@ class PurchaseController extends Controller
         return view('purchases.index', compact('item', 'user'));
     }
 
+    // Stripe決済セッションを作成して決済画面にリダイレクト
     public function store(PurchaseRequest $request, $item_id)
     {
         $item = Item::findOrFail($item_id);
 
+        // StripeのAPIキーをセット
         \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
 
+        // Stripe決済セッションを作成（支払い方法によってコンビニ/カードを切り替え）
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => $request->payment === 'カード払い' ? ['card'] : ['konbini'],
             'line_items' => [[
@@ -53,7 +57,7 @@ class PurchaseController extends Controller
             'cancel_url' => route('purchase.index', ['item_id' => $item_id]),
         ]);
 
-        // 住所を保存
+        // 配送先住所をaddressesテーブルに保存（セッションの値を優先、なければユーザーのプロフィール住所を使用）
         $address = Address::create([
             'user_id'  => auth()->id(),
             'postcode' => session('postcode', auth()->user()->postcode),
@@ -61,7 +65,7 @@ class PurchaseController extends Controller
             'building' => session('building', auth()->user()->building),
         ]);
 
-        // セッションに保存しておく
+        // 購入完了処理（success）で使うためにセッションに保存
         session([
             'stripe_session_id' => $session->id,
             'address_id' => $address->id,
@@ -73,8 +77,10 @@ class PurchaseController extends Controller
         return redirect($session->url);
     }
 
+    // Stripe決済完了後の処理（購入情報をDBに保存して商品一覧にリダイレクト）
     public function success($item_id)
     {
+        // 購入情報をpurchasesテーブルに保存
         Purchase::create([
             'user_id'    => auth()->id(),
             'item_id'    => $item_id,
@@ -82,11 +88,13 @@ class PurchaseController extends Controller
             'payment'    => session('payment'),
         ]);
 
+        // 使用済みセッションを削除
         session()->forget(['stripe_session_id', 'address_id', 'payment']);
 
         return redirect()->route('item.index');
     }
 
+    // 送付先住所変更画面を表示
     public function edit($item_id)
     {
         $item = Item::findOrFail($item_id);
@@ -95,6 +103,7 @@ class PurchaseController extends Controller
         return view('purchases.address', compact('item', 'user'));
     }
 
+    // 送付先住所をセッションに保存して購入画面にリダイレクト（DBには保存しない）
     public function update(AddressRequest $request, $item_id)
     {
         session([

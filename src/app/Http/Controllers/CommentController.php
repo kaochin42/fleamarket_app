@@ -7,6 +7,7 @@ use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
+    // コメントを保存して商品詳細画面にリダイレクト
     public function store(CommentRequest $request, $item_id)
     {
         Comment::create([

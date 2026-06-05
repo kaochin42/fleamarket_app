@@ -5,10 +5,12 @@ use App\Models\Like;
 
 class LikeController extends Controller
 {
+    // いいねのトグル処理（いいね済みなら解除、未いいねなら追加）
     public function toggle($item_id)
     {
         $user_id = auth()->id();
 
+        // 既存のいいねを検索
         $like = Like::where('user_id', $user_id)
             ->where('item_id', $item_id)
             ->first();
