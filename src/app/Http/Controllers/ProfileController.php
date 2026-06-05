@@ -13,7 +13,8 @@ class ProfileController extends Controller
         $user = auth()->user();
         $sellItems = Item::where('user_id', $user->id)->get();
         $buyItems = Item::whereIn('id', Purchase::where('user_id', $user->id)->pluck('item_id'))->get();
-        return view('profiles.show', compact('user', 'sellItems', 'buyItems'));
+        $purchasedItemIds = Purchase::pluck('item_id');
+        return view('profiles.show', compact('user', 'sellItems', 'buyItems', 'purchasedItemIds'));
     }
 
     public function edit()
