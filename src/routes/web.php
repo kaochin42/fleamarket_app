@@ -46,9 +46,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // プロフィール関連 (ProfileController)
     Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage.show');
-    Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
-    Route::post('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+    Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // いいね関連（LikeController）
-    Route::post('/item/{item_id}/like', [LikeController::class, 'toggle'])->name('like.toggle')->middleware('auth');
+    Route::post('/item/{item_id}/like', [LikeController::class, 'toggle'])->name('like.toggle');
 });
